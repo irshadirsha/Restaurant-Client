@@ -73,12 +73,12 @@ function Home() {
   }
   return (
     <div>
-      <div className="bg-white h-screen grid grid-cols-4 gap-6 p-3">
+      <div className="bg-white h-full lg:grid-cols-4 md:grid grid-cols-4 gap-6   p-3">
         
         { restaurentdata?.map((item,index)=>(
-        <div key={index} className="w-full h-80">
-          <div className="max-w-2xl mx-auto">
-            <div className="bg-black hover:shadow-2xl border border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
+        <div key={index} className=" w-full ">
+          <div className=" max-w-2xl mx-auto">
+            <div className="bg-black  hover:shadow-2xl border mt-3 border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
               <div className="w-full h-52 ">
                 <a href="#">
                   <img
