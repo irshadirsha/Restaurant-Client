@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { AiOutlinePlusCircle } from 'react-icons/ai';
 function Navbar() {
   const cloudName = import.meta.env.VITE_CLOUD_NAME;
   const [showModal, setShowModal] = useState(false);
@@ -48,12 +49,12 @@ function Navbar() {
 
   return (
     <div>
-      <div className="bg-gray-400 h-16 flex justify-end items-center pr-20">
+      <div className="bg-gray-800 shadow-xl shadow-black h-16 flex justify-end items-center pr-20">
         <button
           onClick={() => setShowModal(true)}
           className=" px-2 py-1  bg-green-600 hover:bg-green-700 text-white rounded "
         >
-          Add Hotel
+      <h1 className="text-2xl"><AiOutlinePlusCircle/></h1>
         </button>
       </div>
       {showModal && (
@@ -87,7 +88,7 @@ function Navbar() {
               {/* Modal content */}
               <div className="px-6 py-6 lg:px-10 ">
                 <h3 className="mb-4 text-xl font-medium text-center text-gray-900 dark:text-white">
-                  Update your data
+                  Add Restaurent Data
                 </h3>
                 <form className="space-y-6">
                   <div className="w-full">
@@ -101,7 +102,7 @@ function Navbar() {
                           hotelname: e.target.value,
                         })
                       }
-                      placeholder="Hotel Name"
+                      placeholder="Restaurent Name"
                       className="mt-2 p-1.5 block w-full rounded-md  border-current border  border-gray-300 shadow-md   "
                       required
                     />
