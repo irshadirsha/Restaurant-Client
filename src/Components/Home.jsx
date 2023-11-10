@@ -18,8 +18,8 @@ function Home() {
   }, []);
   async function fetchData() {
     try {
-      console.log(import.meta.env.VITE_BACKEND ,'kkkkkkkkkkkkkkkkk');
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND}/home`);
+      console.log(import.meta.env.VITE_BACKEND ,'kkkkkkkkkkkkkkkkk  ppp');
+      const response = await   axios.get(`${import.meta.env.VITE_BACKEND}/home`);
       console.log(response.data);
       console.log(response.data.data);
      
