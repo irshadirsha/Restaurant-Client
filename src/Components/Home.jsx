@@ -14,12 +14,14 @@ function Home() {
   const [restaurentdata,serRestaurentData]=useState([])
   const [updateId,setUpdateId]=useState("")
   useEffect(() => {
-    fetchData();
+    fetchData();  
   }, []);
+
   async function fetchData() {
+
     try {
       console.log(import.meta.env.VITE_BACKEND ,'kkkkkkkkkkkkkkkkk  ppp');
-      const response = await   axios.get(`${import.meta.env.VITE_BACKEND}/home`);
+      const response = await   axios.get(`${import.meta.env.VITE_BACKEND}/home` ,{withCredentials:true});
       console.log(response.data);
       console.log(response.data.data);
      
@@ -28,6 +30,8 @@ function Home() {
       console.error("Error calling API:", error);
     }
   }
+
+
   const handleUpdate = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -37,6 +41,7 @@ function Home() {
       `https://api.cloudinary.com/v1_1/${cloudName}/image/upload?upload_preset=I-club`,
       formData
     );
+
     console.log("cloudd", data);
     if (data) {
       console.log("cloudd", data.data.secure_url);
@@ -47,6 +52,7 @@ function Home() {
         image: data.data.secure_url,
         id:updateId
       };
+      
       console.log(info);
       const response = await axios.post(`${import.meta.env.VITE_BACKEND}/updateData`, {info} );
       console.log(response.data);
