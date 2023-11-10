@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 function Navbar() {
-  const cloudName = import.meta.env.VITE_CLOUD_NAME;
+  const cloudName = import.meta.env.VITE_CLOUD_NAME
   const [showModal, setShowModal] = useState(false);
   const [hoteldata, setHotelData] = useState({
     hotelname: "",
@@ -23,7 +23,7 @@ function Navbar() {
       formData.append("file", hoteldata.image);
       formData.append("upload_preset", "I-club");
       const data = await axios.post(
-        `https://api.cloudinary.com/v1_1/${"dce326gqy"}/image/upload?upload_preset=I-club`,
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload?upload_preset=I-club`,
         formData
       );
       console.log("cloudd", data);
@@ -36,7 +36,7 @@ function Navbar() {
           phone: hoteldata.phone,
           image: data.data.secure_url,
         };
-        const response = await axios.post("http://localhost:3000/addData", {
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND}/addData`, {
           info,
         });
         console.log(response.data);
@@ -154,7 +154,7 @@ function Navbar() {
                     <button
                       onClick={handleSubmit}
                       type="submit"
-                      className=" bg-green-600 hover:bg-green-700 text-white h-10 w-3/6 rounded-lg shadow-xl "
+                      className=" bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 text-white h-10 w-3/6 rounded-lg shadow-xl "
                     >
                       Submit
                     </button>

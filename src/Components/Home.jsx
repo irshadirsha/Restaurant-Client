@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 function Home() {
+  const cloudName = import.meta.env.VITE_CLOUD_NAME
+  // console.log(import.meta.process.env.VITE_CLOUD_NAME ,'kkkkkkkkkkkkkkkkk');
+  
   const [showModal, setShowModal] = useState(false);
   const [restdata, setRestData] = useState({
     hotelname: "",
@@ -15,7 +18,8 @@ function Home() {
   }, []);
   async function fetchData() {
     try {
-      const response = await axios.get("http://localhost:3000/home");
+      console.log(import.meta.env.VITE_BACKEND ,'kkkkkkkkkkkkkkkkk');
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND}/home`);
       console.log(response.data);
       console.log(response.data.data);
      
@@ -30,13 +34,12 @@ function Home() {
     formData.append("file", restdata.image);
     formData.append("upload_preset", "I-club");
     const data = await axios.post(
-      `https://api.cloudinary.com/v1_1/${"dce326gqy"}/image/upload?upload_preset=I-club`,
+      `https://api.cloudinary.com/v1_1/${cloudName}/image/upload?upload_preset=I-club`,
       formData
     );
     console.log("cloudd", data);
     if (data) {
       console.log("cloudd", data.data.secure_url);
-      // setHotelData({...hoteldata,image:data.data.secure_url})
       const info = {
         hotelname: restdata.hotelname,
         address: restdata.address,
@@ -45,7 +48,7 @@ function Home() {
         id:updateId
       };
       console.log(info);
-      const response = await axios.post("http://localhost:3000/updateData", {info} );
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND}/updateData`, {info} );
       console.log(response.data);
       setShowModal(false);
       fetchData();
@@ -73,12 +76,11 @@ function Home() {
   }
   return (
     <div>
-      <div className="bg-white h-full lg:grid-cols-4 md:grid grid-cols-4 gap-6   p-3">
-        
+      <div className="bg-white h-full lg:grid-cols-4 md:grid grid-cols-4 gap-6  p-3">
         { restaurentdata?.map((item,index)=>(
         <div key={index} className=" w-full ">
           <div className=" max-w-2xl mx-auto">
-            <div className="bg-black  hover:shadow-2xl border mt-3 border-gray-200 rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
+            <div className="bg-black  hover:shadow-2xl border mt-3 border-gray-200 rounded-lg  dark:bg-gray-800 dark:border-gray-700">
               <div className="w-full h-52 ">
                 <a href="#">
                   <img
@@ -227,7 +229,7 @@ function Home() {
                     <button
                       onClick={handleUpdate}
                       type="submit"
-                      className=" bg-green-600 hover:bg-green-700 text-white h-10 w-3/6 rounded-lg shadow-xl "
+                      className=" bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 text-white h-10 w-3/6 rounded-lg shadow-xl "
                     >
                       Submit
                     </button>
